@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Peralta&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family:'Peralta', monospace;
+  font-weight: 700;
+}
+
+body {
+  height: 100vh;
+  
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 0.6fr 5fr;
+  height: 100vh;
+  background-color: #fce7f3;
+  background-color: #9d174d;
+  background-color: #a7f3d0;
+  background-color: #d1fae5;
+  background-color: #fee2e2;
+}
+
+.header {
+  grid-row: 1 / 2;
+  background-color: #9d174d;
+  background-color: #fce7f3;
+  background-color: #fef2f2;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.title {
+  font-size: 3rem;
+}
+
+
+.add button {
+  border: none;
+  border-radius: 15px;
+  height: initial;
+  padding: 15px 35px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-color: #fecaca;
+}
+
+.add button:hover {
+  background-color: red;
+}
+
+.add button:active {
+  background-color: blue;
+}
+
+.cards {
+  margin: 50px 0;
+  justify-self: center;
+  grid-row: 2 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-rows: 1fr 1fr;
+  gap: 15px;
+  
+  width: 70%;
+  
+}
+
+.card {
+  background-color: #fef2f2;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  line-height: 2;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 15px;
+  align-items: center;
+  justify-items: center;
+  
+  width: 200px;
+  height: 200px;
+  
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  height: 60%;
+  width: 30%;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(100,100,100,0.9); /* Black w/ opacity */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 7px;
+  
+}
+
+.add-book-form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  font-size: 1rem;
+  border: 1px solid black;
+}
+
+.add-book-form input {
+  border: none;
+  padding: 5px;
+  font-size: 1rem;
+  border-radius: 7px;
+  border: 1px solid black;
+}
+
+.add-book-form button {
+  padding: 10px 15px;
+  border: none;
+  font-size: 1rem;
+  background-color: green;
+  border-radius: 7px;
+}
