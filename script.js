@@ -1,5 +1,10 @@
 let myLibrary = [];
 
+
+for(let i = 0; i < myLibrary.length; i++){
+  console.log(myLibrary[i]);
+}
+
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -9,7 +14,7 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(title, author, pages, read) {
   let book = new Book(title, author, pages, read);
-  myLibrary.push(book);  
+  myLibrary.push(book);
   displayBooks();
 }
 
@@ -17,38 +22,36 @@ function displayBooks() {
   // Get the books div
   const books = document.querySelector(".cards");
 
+  // Need to delete the 'currently showed cards' or else,
+  // the same card will be shown more than once. 
+  const removeDivs = document.querySelectorAll('.card');
+  for(let i = 0; i < removeDivs.length; i++){
+    removeDivs[i].remove();
+  }
+
   // Loop through the myLibrary and create a new card
   myLibrary.forEach(myLibrary => {
     const card = document.createElement('div');
     card.classList.add('card');
     books.appendChild(card);
     for (let key in myLibrary) {
-      //console.log(`${key}: ${myLibrary[key]}`);
+      console.log(key);
       const para = document.createElement('p');
-      if(typeof(myLibrary[key]) === "number"){
-        para.textContent = (`${myLibrary[key]} pages`);  
-      } else {
-        para.textContent = (`${myLibrary[key]}`);
-      }
+      para.textContent = (`${myLibrary[key]}`);
       card.appendChild(para);
     }
   });
 }
+
 
 const submitButton = document.querySelector('.submit-book');
 submitButton.addEventListener('click', () => {
   let title = document.getElementById('title').value;
   let author = document.getElementById('author').value;
   let pages = document.getElementById('pages').value;
-  let read = document.getElementById('isRead').value;
-  console.log(title);
-  console.log(author);
-  console.log(pages);
-  console.log(read);
-  console.log("Hello there!");
+  let read = document.getElementById('is-read').value;
+  //addBookToLibrary(title, author, pages, read);
 });
-
-
 
 
 // Get the modal
@@ -63,30 +66,7 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-/*
-// Get the modal
-var modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+addBookToLibrary('he Hobbit', 'J.R.R Tolkien', 399, false);
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-*/
+addBookToLibrary('A Study In Scarlet', 'Arthur Conan Doyle', 200, false);
