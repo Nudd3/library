@@ -25,17 +25,21 @@
   </div>
 
   <div class="modal" id="my-modal">
-    <form class="add-book-form">
+    <span class="close">&times;</span>
+    <form id="add-book-form">
       <input type="text" class="input" id="title" placeholder="Title" required>
       <input type="text" class="input" id="author" placeholder="Author" required>
       <input type="number" class="input" id="pages" placeholder="Pages" required>
       <div class="is-read">
         <label for="is-read" class="read-checkbox">
-          <input class="checkbox" type="checkbox" id="is-read" />
           Have you read it?
+          <input class="checkbox" type="checkbox" id="is-read" />
         </label>
       </div>
-      <button type="submit" class="submit-book">Add Book</button>
+      <div class="btn-section">
+        <button type="button" class="submit-book-btn">Add Book</button>
+        <button type="button" class="reset-form-btn">Reset Form</button>
+      </div>
     </form>
     
   </div>

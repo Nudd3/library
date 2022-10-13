@@ -1,10 +1,6 @@
 let myLibrary = [];
 
-
-for(let i = 0; i < myLibrary.length; i++){
-  console.log(myLibrary[i]);
-}
-
+// Working
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -12,12 +8,14 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
+// Working
 function addBookToLibrary(title, author, pages, read) {
   let book = new Book(title, author, pages, read);
   myLibrary.push(book);
   displayBooks();
 }
 
+// Working
 function displayBooks() {
   // Get the books div
   const books = document.querySelector(".cards");
@@ -35,25 +33,20 @@ function displayBooks() {
     card.classList.add('card');
     books.appendChild(card);
     for (let key in myLibrary) {
-      console.log(key);
       const para = document.createElement('p');
+      
       para.textContent = (`${myLibrary[key]}`);
+      if (key === 'pages') para.textContent += ' pages';
       card.appendChild(para);
     }
   });
 }
 
 
-const submitButton = document.querySelector('.submit-book');
-submitButton.addEventListener('click', () => {
-  let title = document.getElementById('title').value;
-  let author = document.getElementById('author').value;
-  let pages = document.getElementById('pages').value;
-  let read = document.getElementById('is-read').value;
-  //addBookToLibrary(title, author, pages, read);
-});
 
 
+
+/***** MODAL STUFF  *****/
 // Get the modal
 let modal = document.getElementById("my-modal");
 // Get the button that opens the modal
@@ -67,6 +60,27 @@ window.onclick = function(event) {
   }
 }
 
-addBookToLibrary('he Hobbit', 'J.R.R Tolkien', 399, false);
+const submitButton = document.querySelector('.submit-book-btn');
+submitButton.addEventListener('click', getFormData);
 
-addBookToLibrary('A Study In Scarlet', 'Arthur Conan Doyle', 200, false);
+function getFormData() {
+  let title = document.getElementById('title').value;
+  let author = document.getElementById('author').value;
+  let pages = document.getElementById('pages').value;
+  let read = document.getElementById('is-read').checked ? 'Read' : 'Unread';
+  //document.getElementById("myCheck").checked = false;
+  
+  if (title == '' || author == '' || pages == '' || read == ''){
+    return;
+  }
+  addBookToLibrary(title, author, pages, read);
+  
+  // Reset and hide the form once it's been submitted
+  document.getElementById('add-book-form').reset();
+  modal.style.display = "none";
+}
+
+const resetFormButton = document.querySelector('.reset-form-btn');
+resetFormButton.onclick = () => {
+  document.getElementById('add-book-form').reset();
+}
