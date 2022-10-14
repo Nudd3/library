@@ -55,7 +55,7 @@ function displayBooks() {
 
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('remove-btn');
-    deleteButton.textContent = 'Remove Book';
+    deleteButton.textContent = 'Remove';
 
     card.dataset.index = index;    
     index++;
@@ -120,4 +120,5 @@ const resetFormButton = document.querySelector('.reset-form-btn');
 resetFormButton.onclick = () => {
   document.getElementById('add-book-form').reset();
 }
+
 
