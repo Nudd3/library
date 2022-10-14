@@ -49,13 +49,12 @@ body {
 .add button:hover {
   background-color: #fca5a5;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  transform: scale(1.05);
+  cursor: pointer; 
 }
 
 .add button:active {
-  background-color: #f87171;
   box-shadow: rgba(0, 0, 0, 75) 0px 5px 15px;
-  transform: scale(1);
+  transform: scale(0.9);
 }
 
 .cards {
@@ -104,13 +103,12 @@ body {
 }
 
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   
   width: 300px;
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(100,100,100,0.9); /* Black w/ opacity */
+  background-color: rgba(100,100,100,0.9);
   position: absolute;
   left: 50%;
   top: 50%;
@@ -120,6 +118,19 @@ body {
   transition: 0.2s ease-in-out;
 }
 
+.close-modal {
+  color: #aaa;
+  margin-left: 275px;
+  font-size: 28px;
+  font-weight: bold; 
+  cursor: pointer;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: black;
+  text-decoration: none;
+}
 
 #add-book-form {
   
@@ -162,38 +173,38 @@ body {
 }
 
 .submit-book-btn:hover {
-  transform: scale(1.05); 
   background-color: #16a34a;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
 }
 
 .submit-book-btn:active {
-  transform: scale(1);
-  background-color: #15803d;
+  transform: scale(0.95);
+  
   box-shadow: rgba(0, 0, 0, 0.75) 0px 5px 15px;
 }
 
 .reset-form-btn:hover {
-  transform: scale(1.05);
+  cursor: pointer;
   background-color: #dc2626;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .reset-form-btn:active {
-  transform: scale(1);
-  background-color: #b91c1c;
+  transform: scale(0.95);
+  
   box-shadow: rgba(0, 0, 0, 0.75) 0px 5px 15px;
 }
 
-.close {
-  color: #aaa;
-  margin-left: 275px;
-  font-size: 28px;
-  font-weight: bold; 
+.remove-btn {
+  background-color: blue;
+  
+  
+  border: none;
+  font-size: 1rem;
+  width: 135px;
+  border-radius: 7px;
+  
+  justify-self: center;
 }
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-}

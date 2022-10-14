@@ -8,6 +8,11 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
+/*
+Book.prototype.changeRead = function() {
+  this.read = this.read == true ? false : true;
+}
+*/
 // Working
 function addBookToLibrary(title, author, pages, read) {
   let book = new Book(title, author, pages, read);
@@ -28,17 +33,41 @@ function displayBooks() {
   }
 
   // Loop through the myLibrary and create a new card
-  myLibrary.forEach(myLibrary => {
+  // Each card get a data-attribute called index 
+  // which is a number, used when deleting. 
+  let index = 0; 
+  myLibrary.forEach(library => {
     const card = document.createElement('div');
     card.classList.add('card');
     books.appendChild(card);
-    for (let key in myLibrary) {
+
+    
+
+    //element.dataset.name
+    
+    for (let key in library) {
       const para = document.createElement('p');
       
-      para.textContent = (`${myLibrary[key]}`);
+      para.textContent = (`${library[key]}`);
       if (key === 'pages') para.textContent += ' pages';
       card.appendChild(para);
     }
+
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('remove-btn');
+    deleteButton.textContent = 'Remove Book';
+
+    card.dataset.index = index;    
+    index++;
+
+    deleteButton.addEventListener('click', () => {
+      myLibrary.splice(parseInt(card.dataset.index), 1);
+      // To keep indices correctly lined up I need to 're-assign' the cards
+      // since splice may mess up the indexing of the cards.
+      displayBooks();
+    });
+
+    card.appendChild(deleteButton);
   });
 }
 
@@ -51,6 +80,13 @@ function displayBooks() {
 let modal = document.getElementById("my-modal");
 // Get the button that opens the modal
 let btn = document.getElementById("add-btn");
+
+var span = document.getElementsByClassName("close-modal")[0];
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
 btn.onclick = () => {
   modal.style.display = 'block';
 }
@@ -69,7 +105,7 @@ function getFormData() {
   let pages = document.getElementById('pages').value;
   let read = document.getElementById('is-read').checked ? 'Read' : 'Unread';
   //document.getElementById("myCheck").checked = false;
-  
+
   if (title == '' || author == '' || pages == '' || read == ''){
     return;
   }
@@ -84,3 +120,4 @@ const resetFormButton = document.querySelector('.reset-form-btn');
 resetFormButton.onclick = () => {
   document.getElementById('add-book-form').reset();
 }
+
