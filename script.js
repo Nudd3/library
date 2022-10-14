@@ -7,11 +7,11 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
-
-/*
-Book.prototype.changeRead = function() {
-  this.read = this.read == true ? false : true;
+Book.prototype.toggleRead = function() {
+  this.read = this.read === 'Read' ? 'Unread' : 'Read';
 }
+/*
+
 */
 // Working
 function addBookToLibrary(title, author, pages, read) {
@@ -35,8 +35,10 @@ function displayBooks() {
   // Loop through the myLibrary and create a new card
   // Each card get a data-attribute called index 
   // which is a number, used when deleting. 
+
+  
   let index = 0; 
-  myLibrary.forEach(library => {
+  myLibrary.forEach(book => {
     const card = document.createElement('div');
     card.classList.add('card');
     books.appendChild(card);
@@ -45,12 +47,35 @@ function displayBooks() {
 
     //element.dataset.name
     
-    for (let key in library) {
-      const para = document.createElement('p');
+    for (let key in book) {
+      if (key == 'toggleRead') continue 
+      if (key === 'read') {
+        
+        const toggleReadButton = document.createElement('button');
+        toggleReadButton.classList.add('read-btn');
+        toggleReadButton.textContent = book.read;
+        if(book.read === 'Read'){
+          toggleReadButton.classList.toggle('read');
+        }
+
+        toggleReadButton.addEventListener('click' , () => {
+          book.toggleRead();
+          toggleReadButton.textContent = book.read;
+          toggleReadButton.classList.toggle('read');
+        });
+        card.appendChild(toggleReadButton);
+      } else {
+        const cardElement = document.createElement('p');
       
-      para.textContent = (`${library[key]}`);
-      if (key === 'pages') para.textContent += ' pages';
-      card.appendChild(para);
+        cardElement.textContent = (`${book[key]}`);
+        if (key === 'pages') cardElement.textContent += ' pages';
+        card.appendChild(cardElement);
+      }
+      
+
+      
+
+      
     }
 
     const deleteButton = document.createElement('button');
