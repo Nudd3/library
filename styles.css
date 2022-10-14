@@ -232,8 +232,33 @@ body {
   border-radius: 7px;
   
   justify-self: center;
+  width: 96px;
+}
+
+.read-btn:hover {
+  cursor: pointer;
+  background-color: #dc2626;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.read-btn:active {
+  transform: scale(0.95);
+  
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 5px 15px;
 }
 
 .read {
-  background-color: green;
+  background-color: #22c55e;
+}
+
+.read:hover {
+  cursor: pointer;
+  background-color: #16a34a;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.read:active {
+  transform: scale(0.95);
+  
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 5px 15px;
 }
