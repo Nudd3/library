@@ -1,52 +1,53 @@
-let myLibrary = [];
+class Book{
 
-// Working
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
-Book.prototype.toggleRead = function() {
-  this.read = this.read === 'Read' ? 'Unread' : 'Read';
-}
-/*
-
-*/
-// Working
-function addBookToLibrary(title, author, pages, read) {
-  let book = new Book(title, author, pages, read);
-  myLibrary.push(book);
-  displayBooks();
-}
-
-// Working
-function displayBooks() {
-  // Get the books div
-  const books = document.querySelector(".cards");
-
-  // Need to delete the 'currently showed cards' or else,
-  // the same card will be shown more than once. 
-  const removeDivs = document.querySelectorAll('.card');
-  for(let i = 0; i < removeDivs.length; i++){
-    removeDivs[i].remove();
+  constructor(title, author, pages, read){
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
   }
 
-  // Loop through the myLibrary and create a new card
-  // Each card get a data-attribute called index 
-  // which is a number, used when deleting. 
+  toggleRead() {
+    this._read = this._read === 'Read' ? 'Unread' : 'Read';
+  }
+}
 
+class Library {
+  constructor(){
+    this.myLibrary = [];
+  }
+
+  addBook(book){
+    this.myLibrary.push(book);
+  }
+
+  removeBook(book){
+    this._myLibrary.splice
+  }
+}
+
+const library = new Library();
+
+const cardsDiv = document.querySelector('.cards');
+const cardDivs = document.querySelectorAll('.card');
+const modal = document.getElementById('my-modal');
+const addButton = document.getElementById("add-btn");
+const closeModalSpan = document.getElementsByClassName("close-modal")[0];
+const submitButton = document.querySelector('.submit-book-btn');
+
+// Working
+const displayBooks = () => {
+
+  for(let i = 0; i < cardDivs.length; i++){
+    removeDivs[i].remove();
+  }
   
   let index = 0; 
-  myLibrary.forEach(book => {
+  library.forEach(book => {
     const card = document.createElement('div');
     card.classList.add('card');
-    books.appendChild(card);
+    cardsDiv.appendChild(card);
 
-    
-
-    //element.dataset.name
-    
     for (let key in book) {
       if (key == 'toggleRead') continue 
       if (key === 'read') {
@@ -98,21 +99,14 @@ function displayBooks() {
 
 
 
-
-
-/***** MODAL STUFF  *****/
-// Get the modal
-let modal = document.getElementById("my-modal");
-// Get the button that opens the modal
-let btn = document.getElementById("add-btn");
-
-var span = document.getElementsByClassName("close-modal")[0];
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+const closeModal = () => {
   modal.style.display = "none";
+  
 }
+closeModalSpan.addEventListener('click', closeModal);
 
-btn.onclick = () => {
+
+addButton.onclick = () => {
   modal.style.display = 'block';
 }
 window.onclick = function(event) {
@@ -121,7 +115,7 @@ window.onclick = function(event) {
   }
 }
 
-const submitButton = document.querySelector('.submit-book-btn');
+
 submitButton.addEventListener('click', getFormData);
 
 function getFormData() {
@@ -134,7 +128,8 @@ function getFormData() {
   if (title == '' || author == '' || pages == '' || read == ''){
     return;
   }
-  addBookToLibrary(title, author, pages, read);
+  let book = new Book(title, author, pages, read);
+  library.addBook(title, author, pages, read);
   
   // Reset and hide the form once it's been submitted
   document.getElementById('add-book-form').reset();
